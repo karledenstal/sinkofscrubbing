@@ -15,5 +15,5 @@ Install with preferred mod manager.
 
 ## Recommended additions
 
-- [Water in wash basins](https://www.nexusmods.com/skyrimspecialedition/mods/59333)
+- [Water in Wash Basins](https://www.nexusmods.com/skyrimspecialedition/mods/59333)
 - [Dirt and Blood - Dynamic Visuals](https://www.nexusmods.com/skyrimspecialedition/mods/38886)

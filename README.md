@@ -22,6 +22,13 @@ Does not come with any animations or anything like that to avoid placing markers
 
 Install with preferred mod manager.
 
+## Compatibility
+
+- Built-in compatibility for Dirt and Blood - Dynamic Visuals. Will not fully clean the character, but set it to the lowest level of dirtiness. Similar to how swimming in water works in D&B.
+- Not built to work with other cleaning mods as of now. But will work standalone with it's own effect.
+- Should be compatible with most things.
+- Obviously not compatible with Interactive Wash Basins or Interactive Wash Basins - Base Object Swapper.
+
 ## Recommended additions
 
 - [Water in Wash Basins](https://www.nexusmods.com/skyrimspecialedition/mods/59333)

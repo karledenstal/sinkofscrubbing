@@ -8,6 +8,12 @@ Message Property GroomedMessage Auto
 Message Property CleanedMessage Auto
 Spell Property CleanSpell Auto
 Actor Property PlayerRef Auto
+Idle Property RefreshedIdle Auto
+String Property CleaningAnim Auto
+
+STATIC Property XMarker Auto
+
+ObjectReference BasinMarker
 
 Bool IsGrooming = False
 String RACE_MENU = "RaceSex Menu"
@@ -38,13 +44,40 @@ EndEvent
 
 Function CleanYourself()
 	; Clean
+	AddMarker(PlayerRef)
+	PlayerRef.SetPlayerControls(false)
+	DisablePlayerControls(true, true, true, true)
+	ForceThirdPerson()
+	SetPlayerAIDriven(true)
+
+	PlayerRef.PathToReference(BasinMarker, 1)
+	PlayerRef.MoveTo(BasinMarker)
+
 	CleanSpell.Cast(PlayerRef, PlayerRef)
+	Debug.SendAnimationEvent(PlayerRef, CleaningAnim)
+	Wait(4.0)
 	ClearTempEffects()
-	CleanedMessage.Show()
+	PlayerRef.PlayIdle(RefreshedIdle)
 
 	If GetFormFromFile(0x01000824, "Dirt and Blood - Dynamic Visuals.esp")
 		CleanYourselfDirtAndBlood()
 	EndIf
+
+	CleanedMessage.Show()
+
+	PlayerRef.SetPlayerControls(true)
+	SetPlayerAIDriven(false)
+	DisablePlayerControls()
+	Wait(0.1)
+	EnablePlayerControls()
+	PlayerRef.EnableAI()
+	BasinMarker.Disable()
+	BasinMarker.Delete()
+EndFunction
+
+Function AddMarker(ObjectReference akTarget)
+	BasinMarker = self.PlaceAtMe(XMarker, 1)
+	BasinMarker.MoveTo(self, -2, -23, 0, false)
 EndFunction
 
 Function CleanYourselfDirtAndBlood()

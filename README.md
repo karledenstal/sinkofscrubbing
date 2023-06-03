@@ -2,7 +2,7 @@
 
 A simple mod for Skyrim Special Edition that makes the Wash basins in the game usable. Gives the player a choice of either grooming themselves or refreshing themselves. 
 
-Provides small buffs when cleaning to give a small incentive to doing so. Mostly made for immersion/roleplay purposes. Also provides a nice little message after refreshing/grooming.
+Provides small buffs when cleaning to give a small incentive to doing so. Mostly made for immersion/roleplay purposes. Also provides a nice little message after refreshing yourself.
 
 Does not come with any animations or anything like that to avoid placing markers, as well as to keep it simple and straight-forward. Mod is open source so feel free to expand upon it if you wish, permissions are all open.
 
@@ -10,7 +10,6 @@ Does not come with any animations or anything like that to avoid placing markers
 
 - Makes Wash Basins useable
 - Provides small buff to Resist Disease & Speechcraft after cleaning for 4 hours
-- Provides with "Self-assured" buff after grooming.
 - Built-in support for Dirt and Blood, but works standalone as well.
 - Mod is provided as-is, open source, and permissions are open. Might add more to it in the future tho, but for now it's just a simple mod.
 

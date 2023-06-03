@@ -36,6 +36,6 @@ Install with preferred mod manager.
 
 ## Credits
 
-- Inspired by [Interactive Wash Basins](https://www.nexusmods.com/skyrimspecialedition/mods/56039) by [simsim899](https://www.nexusmods.com/skyrimspecialedition/users/8345545?tab=user+files).
+- Idea from [Interactive Wash Basins](https://www.nexusmods.com/skyrimspecialedition/mods/56039) by [simsim899](https://www.nexusmods.com/skyrimspecialedition/users/8345545?tab=user+files).
 - [Base Object Swapper](https://www.nexusmods.com/skyrimspecialedition/mods/60805) by [powerofthree](https://www.nexusmods.com/skyrimspecialedition/users/2148728?tab=user+files)
 - Helpful community on r/skyrimmods discord.

@@ -8,7 +8,7 @@ Does not come with any animations or anything like that to avoid placing markers
 
 ## Features
 
-- Makes Wash Basins useable
+- Makes Wash Basins interactable
 - Provides small buff to Resist Disease & Speechcraft after cleaning for 4 hours
 - Built-in support for Dirt and Blood, but works standalone as well.
 - Mod is provided as-is, open source, and permissions are open. Might add more to it in the future tho, but for now it's just a simple mod.

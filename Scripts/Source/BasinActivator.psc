@@ -50,23 +50,32 @@ EndFunction
 Function CleanYourselfDirtAndBlood()
 	PlayerRef.DispelSpell(CleanSpell)
 
-		Spell Dirty_Spell_Dirt1 = GetFormFromFile(0x01000806, "Dirt and Blood - Dynamic Visuals.esp") as Spell
-		Spell Dirty_Spell_Dirt2 = GetFormFromFile(0x01000807, "Dirt and Blood - Dynamic Visuals.esp") as Spell
-		Spell Dirty_Spell_Dirt3 = GetFormFromFile(0x01000808, "Dirt and Blood - Dynamic Visuals.esp") as Spell
-		Spell Dirty_Spell_Dirt4 = GetFormFromFile(0x01000838, "Dirt and Blood - Dynamic Visuals.esp") as Spell
-		Spell Dirty_Spell_Blood1 = GetFormFromFile(0x01000809, "Dirt and Blood - Dynamic Visuals.esp") as Spell
-		Spell Dirty_Spell_Blood2 = GetFormFromFile(0x0100080A, "Dirt and Blood - Dynamic Visuals.esp") as Spell
-		Spell Dirty_Spell_Blood3 = GetFormFromFile(0x0100080B, "Dirt and Blood - Dynamic Visuals.esp") as Spell
-		Spell Dirty_Spell_Blood4 = GetFormFromFile(0x01000839, "Dirt and Blood - Dynamic Visuals.esp") as Spell
-		Spell Dirty_Spell_Clean = GetFormFromFile(0x0100080C, "Dirt and Blood - Dynamic Visuals.esp") as Spell
+	Spell Dirty_Spell_Dirt1 = GetFormFromFile(0x01000806, "Dirt and Blood - Dynamic Visuals.esp") as Spell
+	Spell Dirty_Spell_Dirt2 = GetFormFromFile(0x01000807, "Dirt and Blood - Dynamic Visuals.esp") as Spell
+	Spell Dirty_Spell_Dirt3 = GetFormFromFile(0x01000808, "Dirt and Blood - Dynamic Visuals.esp") as Spell
+	Spell Dirty_Spell_Dirt4 = GetFormFromFile(0x01000838, "Dirt and Blood - Dynamic Visuals.esp") as Spell
+	Spell Dirty_Spell_Blood1 = GetFormFromFile(0x01000809, "Dirt and Blood - Dynamic Visuals.esp") as Spell
+	Spell Dirty_Spell_Blood2 = GetFormFromFile(0x0100080A, "Dirt and Blood - Dynamic Visuals.esp") as Spell
+	Spell Dirty_Spell_Blood3 = GetFormFromFile(0x0100080B, "Dirt and Blood - Dynamic Visuals.esp") as Spell
+	Spell Dirty_Spell_Blood4 = GetFormFromFile(0x01000839, "Dirt and Blood - Dynamic Visuals.esp") as Spell
 
-		PlayerRef.RemoveSpell(Dirty_Spell_Dirt1)
-		PlayerRef.RemoveSpell(Dirty_Spell_Dirt2)
-		PlayerRef.RemoveSpell(Dirty_Spell_Dirt3)
+	If PlayerRef.HasSpell(Dirty_Spell_Dirt4)
 		PlayerRef.RemoveSpell(Dirty_Spell_Dirt4)
-		PlayerRef.RemoveSpell(Dirty_Spell_Blood1)
-		PlayerRef.RemoveSpell(Dirty_Spell_Blood2)
-		PlayerRef.RemoveSpell(Dirty_Spell_Blood3)
+		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
+	ElseIf PlayerRef.HasSpell(Dirty_Spell_Dirt3)
+		PlayerRef.RemoveSpell(Dirty_Spell_Dirt3)
+		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
+	ElseIf PlayerRef.HasSpell(Dirty_Spell_Dirt2)
+		PlayerRef.RemoveSpell(Dirty_Spell_Dirt2)
+		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
+	ElseIf PlayerRef.HasSpell(Dirty_Spell_Blood4)
 		PlayerRef.RemoveSpell(Dirty_Spell_Blood4)
-		PlayerRef.AddSpell(Dirty_Spell_Clean, False)
+		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
+	ElseIf PlayerRef.HasSpell(Dirty_Spell_Blood3)
+		PlayerRef.RemoveSpell(Dirty_Spell_Blood3)
+		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
+	ElseIf PlayerRef.HasSpell(Dirty_Spell_Blood2)
+		PlayerRef.RemoveSpell(Dirty_Spell_Blood2)
+		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
+	EndIf
 EndFunction

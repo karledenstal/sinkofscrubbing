@@ -4,6 +4,8 @@ A simple mod for Skyrim Special Edition that makes the Wash basins in the game u
 
 Provides small buffs when cleaning to give a small incentive to doing so. Mostly made for immersion/roleplay purposes. Also provides a nice little message after refreshing/grooming.
 
+Does not come with any animations or anything like that to avoid placing markers, as well as to keep it simple and straight-forward. Mod is open source so feel free to expand upon it if you wish, permissions are all open.
+
 ## Features
 
 - Makes Wash Basins useable
@@ -24,3 +26,9 @@ Install with preferred mod manager.
 
 - [Water in Wash Basins](https://www.nexusmods.com/skyrimspecialedition/mods/59333)
 - [Dirt and Blood - Dynamic Visuals](https://www.nexusmods.com/skyrimspecialedition/mods/38886)
+
+## Credits
+
+- Inspired by [Interactive Wash Basins](https://www.nexusmods.com/skyrimspecialedition/mods/56039) by [simsim899](https://www.nexusmods.com/skyrimspecialedition/users/8345545?tab=user+files). It's not compatible with latest Skyrim version, so this is a simpler alternative.
+- [Base Object Swapper](https://www.nexusmods.com/skyrimspecialedition/mods/60805) by [powerofthree](https://www.nexusmods.com/skyrimspecialedition/users/2148728?tab=user+files)
+- Helpful community on r/skyrimmods discord.

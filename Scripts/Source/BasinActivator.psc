@@ -26,16 +26,7 @@ Event OnActivate(ObjectReference akActionRef)
 	If akActionRef == PlayerRef
 		Int Button = CleanYourselfMessage.Show()
 
-		Form FullHelmet = PlayerRef.GetWornForm(HEAD_SLOT)
-		Form Helmet = PlayerRef.GetWornForm(HAIR_SLOT)
-
-		If FullHelmet && FullHelmet.HasKeyword(HELMET_KEYWORD)
-			EquippedHelmet = FullHelmet
-			PlayerRef.UnequipItem(FullHelmet)
-		ElseIf Helmet && Helmet.HasKeyword(HELMET_KEYWORD)
-			EquippedHelmet = Helmet
-			PlayerRef.UnequipItem(Helmet)
-		EndIf
+		HandleHelmet()
 
 		If Button == 0
 			; Open racemenu
@@ -44,6 +35,10 @@ Event OnActivate(ObjectReference akActionRef)
 		ElseIf Button == 1
 			; Clean
 			CleanYourself()
+		ElseIf Button == 2
+			; Cancel
+			EquipHelmetBackOn()
+			Return
 		EndIf
 	EndIf
 EndEvent
@@ -53,13 +48,31 @@ Event OnMenuClose(String menuName)
 		IsGrooming = False
 		GroomedMessage.Show()
 
-		If EquippedHelmet
-			Wait(0.2)
-			PlayerRef.EquipItem(EquippedHelmet)
-		EndIf
+		EquipHelmetBackOn()
+
 		self.UnregisterForMenu(menuName)
 	EndIf
 EndEvent
+
+Function HandleHelmet()
+	Form FullHelmet = PlayerRef.GetWornForm(HEAD_SLOT)
+	Form Helmet = PlayerRef.GetWornForm(HAIR_SLOT)
+
+	If FullHelmet && FullHelmet.HasKeyword(HELMET_KEYWORD)
+		EquippedHelmet = FullHelmet
+		PlayerRef.UnequipItem(FullHelmet)
+	ElseIf Helmet && Helmet.HasKeyword(HELMET_KEYWORD)
+		EquippedHelmet = Helmet
+		PlayerRef.UnequipItem(Helmet)
+	EndIf
+EndFunction
+
+Function EquipHelmetBackOn()
+	If EquippedHelmet
+		Wait(0.2)
+		PlayerRef.EquipItem(EquippedHelmet)
+	EndIf
+EndFunction
 
 Function CleanYourself()
 	; Clean
@@ -75,10 +88,7 @@ Function CleanYourself()
 	ClearTempEffects()
 	CleanedMessage.Show()
 
-	If EquippedHelmet
-		Wait(0.2)
-		PlayerRef.EquipItem(EquippedHelmet)
-	EndIf
+	EquipHelmetBackOn()
 
 	If GetFormFromFile(0x01000824, "Dirt and Blood - Dynamic Visuals.esp")
 		CleanYourselfDirtAndBlood()

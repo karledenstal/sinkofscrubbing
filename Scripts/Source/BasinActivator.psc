@@ -26,17 +26,16 @@ Event OnActivate(ObjectReference akActionRef)
 	If akActionRef == PlayerRef
 		Int Button = CleanYourselfMessage.Show()
 
-		HandleHelmet()
+		If Button != 2
+			HandleHelmet()
+		EndIf
 
 		If Button == 0
-			; Open racemenu
 			IsGrooming = True
 			ShowRaceMenu()
 		ElseIf Button == 1
-			; Clean
 			CleanYourself()
 		ElseIf Button == 2
-			; Cancel
 			EquipHelmetBackOn()
 			Return
 		EndIf

@@ -27,7 +27,7 @@ Install with preferred mod manager.
 - Should be compatible with anything that places the vanilla Wash Basin as BoS will swap the object.
 - Obviously not compatible with Interactive Wash Basins or Interactive Wash Basins - Base Object Swapper.
 
-## Recommended additions
+## Recommended mods
 
 - [Water in Wash Basins](https://www.nexusmods.com/skyrimspecialedition/mods/59333)
 - [Dirt and Blood - Dynamic Visuals](https://www.nexusmods.com/skyrimspecialedition/mods/38886)

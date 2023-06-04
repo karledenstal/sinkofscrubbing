@@ -10,17 +10,20 @@ Spell Property CleanSpell Auto
 Actor Property PlayerRef Auto
 Idle Property CleanedIdle Auto
 Sound Property CleanSound Auto
+STATIC Property XMarker Auto
 
 ObjectReference BasinMarker
-STATIC Property XMarker Auto
 
 Bool IsGrooming = False
 String RACE_MENU = "RaceSex Menu"
+Int HEAD_SLOT = 30
 
 Event OnActivate(ObjectReference akActionRef)
 	self.RegisterForMenu(RACE_MENU)
 	If akActionRef == PlayerRef
 		Int Button = CleanYourselfMessage.Show()
+
+		PlayerRef.UnequipItemSlot(HEAD_SLOT)
 
 		If Button == 0
 			; Open racemenu
@@ -47,9 +50,9 @@ Function CleanYourself()
 	ForceThirdPerson()
 	PlayerRef.MoveTo(BasinMarker)
 	Wait(0.1)
-	Debug.SendAnimationEvent(PlayerRef, "IdlePray")
+	Debug.SendAnimationEvent(PlayerRef, "IdleComeThisWay")
 	CleanSound.Play(self)
-	Wait(4.0)
+	Wait(2.5)
 	PlayerRef.PlayIdle(CleanedIdle)
 	CleanSpell.Cast(PlayerRef, PlayerRef)
 	ClearTempEffects()

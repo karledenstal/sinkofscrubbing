@@ -40,12 +40,11 @@ Function CleanYourself()
 	; Clean
 	CleanSpell.Cast(PlayerRef, PlayerRef)
 	ClearTempEffects()
+	CleanedMessage.Show()
 
 	If GetFormFromFile(0x01000824, "Dirt and Blood - Dynamic Visuals.esp")
 		CleanYourselfDirtAndBlood()
 	EndIf
-
-	CleanedMessage.Show()
 EndFunction
 
 Function CleanYourselfDirtAndBlood()

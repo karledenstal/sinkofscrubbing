@@ -8,8 +8,7 @@ Provides small buffs when cleaning to give a small incentive to doing so. Mostly
 
 - Makes Wash Basins interactable
 - Provides small buff to Resist Disease & Speechcraft after cleaning for 4 hours
-- Built-in support for Dirt and Blood, but works standalone as well.
-- Mod is provided as-is, open source, and permissions are open. Might add more to it in the future tho, but for now it's just a simple mod.
+- Built-in support for Dirt and Blood. Will not fully clean the character, but set it to the lowest level of dirtiness. Similar to how swimming in water works in D&B.
 
 ## Requirements
 
@@ -22,7 +21,7 @@ Install with preferred mod manager.
 
 ## Compatibility
 
-- Built-in compatibility for Dirt and Blood - Dynamic Visuals. Will not fully clean the character, but set it to the lowest level of dirtiness. Similar to how swimming in water works in D&B.
+- Built-in compatibility for Dirt and Blood - Dynamic Visuals.
 - Not built to work with other cleaning mods as of now. But will work standalone with it's own effect.
 - Should be compatible with anything that places the vanilla Wash Basin as BoS will swap the object.
 - Obviously not compatible with Interactive Wash Basins or Interactive Wash Basins - Base Object Swapper.

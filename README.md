@@ -6,7 +6,7 @@ Enhances immersion & roleplaying by making wash basins useable, giving you the c
 
 - Makes Wash Basins useable by letting you Groom (open the racemenu) or "Refresh yourself".
 - Refreshing yourself will grant you a 25% bonus to Resist Disease & give you a +5 to Speechcraft.
-- Built-in support for Dirt and Blood. Will not fully clean the character, but set it to the lowest level of dirtiness. Similar to how swimming in water works in D&B. **This will override the effect added by the mod**
+- Built-in support for Dirt and Blood. Will not fully clean the character, but set it to the lowest level of dirtiness. Similar to how swimming in water works in D&B. **Dirt & Blood effects will override Sink of Scrubbins clean effect**
 
 ## Requirements
 

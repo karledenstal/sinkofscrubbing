@@ -54,6 +54,7 @@ Event OnMenuClose(String menuName)
 		GroomedMessage.Show()
 
 		If EquippedHelmet
+			Wait(0.2)
 			PlayerRef.EquipItem(EquippedHelmet)
 		EndIf
 		self.UnregisterForMenu(menuName)
@@ -75,6 +76,7 @@ Function CleanYourself()
 	CleanedMessage.Show()
 
 	If EquippedHelmet
+		Wait(0.2)
 		PlayerRef.EquipItem(EquippedHelmet)
 	EndIf
 

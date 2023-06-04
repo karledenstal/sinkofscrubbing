@@ -24,7 +24,7 @@ Install with preferred mod manager.
 
 - Built-in compatibility for Dirt and Blood - Dynamic Visuals. Will not fully clean the character, but set it to the lowest level of dirtiness. Similar to how swimming in water works in D&B.
 - Not built to work with other cleaning mods as of now. But will work standalone with it's own effect.
-- Should be compatible with most things.
+- Should be compatible with anything that places the vanilla Wash Basin as BoS will swap the object.
 - Obviously not compatible with Interactive Wash Basins or Interactive Wash Basins - Base Object Swapper.
 
 ## Recommended additions

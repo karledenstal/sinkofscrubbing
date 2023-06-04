@@ -11,19 +11,31 @@ Actor Property PlayerRef Auto
 Idle Property CleanedIdle Auto
 Sound Property CleanSound Auto
 STATIC Property XMarker Auto
+Keyword Property HELMET_KEYWORD Auto
 
 ObjectReference BasinMarker
+Form EquippedHelmet
 
 Bool IsGrooming = False
 String RACE_MENU = "RaceSex Menu"
-Int HEAD_SLOT = 30
+Int HEAD_SLOT = 1
+int HAIR_SLOT = 2
 
 Event OnActivate(ObjectReference akActionRef)
 	self.RegisterForMenu(RACE_MENU)
 	If akActionRef == PlayerRef
 		Int Button = CleanYourselfMessage.Show()
 
-		PlayerRef.UnequipItemSlot(HEAD_SLOT)
+		Form FullHelmet = PlayerRef.GetWornForm(HEAD_SLOT)
+		Form Helmet = PlayerRef.GetWornForm(HAIR_SLOT)
+
+		If FullHelmet && FullHelmet.HasKeyword(HELMET_KEYWORD)
+			EquippedHelmet = FullHelmet
+			PlayerRef.UnequipItem(FullHelmet)
+		ElseIf Helmet && Helmet.HasKeyword(HELMET_KEYWORD)
+			EquippedHelmet = Helmet
+			PlayerRef.UnequipItem(Helmet)
+		EndIf
 
 		If Button == 0
 			; Open racemenu
@@ -40,6 +52,10 @@ Event OnMenuClose(String menuName)
 	If menuName == RACE_MENU && IsGrooming
 		IsGrooming = False
 		GroomedMessage.Show()
+
+		If EquippedHelmet
+			PlayerRef.EquipItem(EquippedHelmet)
+		EndIf
 		self.UnregisterForMenu(menuName)
 	EndIf
 EndEvent
@@ -57,6 +73,10 @@ Function CleanYourself()
 	CleanSpell.Cast(PlayerRef, PlayerRef)
 	ClearTempEffects()
 	CleanedMessage.Show()
+
+	If EquippedHelmet
+		PlayerRef.EquipItem(EquippedHelmet)
+	EndIf
 
 	If GetFormFromFile(0x01000824, "Dirt and Blood - Dynamic Visuals.esp")
 		CleanYourselfDirtAndBlood()

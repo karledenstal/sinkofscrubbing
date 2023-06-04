@@ -4,8 +4,6 @@ A simple mod for Skyrim Special Edition that makes the Wash basins in the game u
 
 Provides small buffs when cleaning to give a small incentive to doing so. Mostly made for immersion/roleplay purposes. Also provides a nice little message after refreshing yourself.
 
-Does not come with any animations or anything like that to avoid placing markers, as well as to keep it simple and straight-forward. Mod is open source so feel free to expand upon it if you wish, permissions are all open.
-
 ## Features
 
 - Makes Wash Basins interactable

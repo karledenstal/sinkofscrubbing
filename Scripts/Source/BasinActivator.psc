@@ -92,11 +92,18 @@ Function CleanYourself()
 	If GetFormFromFile(0x01000824, "Dirt and Blood - Dynamic Visuals.esp")
 		CleanYourselfDirtAndBlood()
 	EndIf
+
+	ClearMarker()
 EndFunction
 
 Function AddMarker()
 	BasinMarker = self.PlaceAtMe(XMarker, 1)
 	BasinMarker.MoveTo(self, -2, -23, 0, false)
+EndFunction
+
+Function ClearMarker()
+	BasinMarker.Disable()
+	BasinMarker.Delete()
 EndFunction
 
 Function CleanYourselfDirtAndBlood()

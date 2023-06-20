@@ -38,7 +38,6 @@ Event OnActivate(ObjectReference akActionRef)
 		ElseIf Button == 1
 			CleanYourself()
 		ElseIf Button == 2
-			EquipHelmetBackOn()
 			Return
 		EndIf
 	EndIf
@@ -72,6 +71,7 @@ Function EquipHelmetBackOn()
 	If EquippedHelmet
 		Wait(0.2)
 		PlayerRef.EquipItem(EquippedHelmet)
+		EquippedHelmet = None
 	EndIf
 EndFunction
 

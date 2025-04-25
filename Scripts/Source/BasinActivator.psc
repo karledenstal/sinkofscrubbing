@@ -10,21 +10,18 @@ Spell Property CleanSpell Auto
 Actor Property PlayerRef Auto
 Idle Property CleanedIdle Auto
 Sound Property CleanSound Auto
-STATIC Property XMarker Auto
-Keyword Property HELMET_KEYWORD Auto
 
 ObjectReference BasinMarker
-Form EquippedHelmet
+Armor StoredEquippedHelmet = None
 
 Bool IsGrooming = False
 String RACE_MENU = "RaceSex Menu"
-Int HEAD_SLOT = 1
-int HAIR_SLOT = 2
 
 Event OnActivate(ObjectReference akActionRef)
+	bool isDnBInstalled = IsPluginInstalled("Dirt and Blood - Dynamic Visuals.esp")
+	bool isKICInstalled = IsPluginInstalled("Keep It Clean.esp")
+
 	self.RegisterForMenu(RACE_MENU)
-	ActorBase owner = self.GetActorOwner()
-	Debug.Notification(owner.GetName())
 	If akActionRef == PlayerRef
 		Int Button = CleanYourselfMessage.Show()
 
@@ -35,8 +32,23 @@ Event OnActivate(ObjectReference akActionRef)
 		If Button == 0
 			IsGrooming = True
 			ShowRaceMenu()
-		ElseIf Button == 1
-			CleanYourself()
+		ElseIf Button == 1			
+			If isDnBInstalled
+				Debug.Notification("Dirt and Blood is installed")
+				CleanYourselfDirtAndBlood()
+			EndIf
+		
+			If isKICInstalled
+				Debug.Notification("Keep it Clean is installed")
+				CleanYourselfKeepItClean()
+			EndIf
+
+			If !isKICInstalled && !isDnBInstalled
+				CleanYourself()
+			EndIf
+
+			ShowCleanedMessage(isKICInstalled)
+			EquipHelmetBackOn()
 		ElseIf Button == 2
 			Return
 		EndIf
@@ -55,56 +67,54 @@ Event OnMenuClose(String menuName)
 EndEvent
 
 Function HandleHelmet()
-	Form FullHelmet = PlayerRef.GetWornForm(HEAD_SLOT)
-	Form Helmet = PlayerRef.GetWornForm(HAIR_SLOT)
+	Armor HeadGear = playerRef.GetEquippedArmorInSlot(30) ; check head slot
+	Armor HoodGear = playerRef.GetEquippedArmorInSlot(31) ; check hair slot
 
-	If FullHelmet && FullHelmet.HasKeyword(HELMET_KEYWORD)
-		EquippedHelmet = FullHelmet
-		PlayerRef.UnequipItem(FullHelmet)
-	ElseIf Helmet && Helmet.HasKeyword(HELMET_KEYWORD)
-		EquippedHelmet = Helmet
-		PlayerRef.UnequipItem(Helmet)
+	If HeadGear
+		StoredEquippedHelmet = HeadGear
+		PlayerRef.UnequipItem(HeadGear)
+	ElseIf HoodGear
+		StoredEquippedHelmet = HoodGear
+		PlayerRef.UnequipItem(HoodGear)
+	Else
+		Debug.Notification("Nothing to unequip")
 	EndIf
 EndFunction
 
 Function EquipHelmetBackOn()
-	If EquippedHelmet
+	If StoredEquippedHelmet
 		Wait(0.2)
-		PlayerRef.EquipItem(EquippedHelmet)
-		EquippedHelmet = None
+		PlayerRef.EquipItem(StoredEquippedHelmet)
+		StoredEquippedHelmet = None
 	EndIf
 EndFunction
 
-Function CleanYourself()
-	; Clean
+Function ShowCleanedMessage(bool isKICInstalled)
+	If isKICInstalled
+		Message CleanedMsgKIC = GetFormFromFile(0x05113425, "Keep It Clean.esp") as Message
+		CleanedMsgKIC.Show()
+	Else
+		CleanedMessage.Show()
+	EndIf
+EndFunction
+
+Function CleanTriggered()
 	Wait(0.1)
 	Debug.SendAnimationEvent(PlayerRef, "IdleComeThisWay")
 	CleanSound.Play(self)
 	Wait(2.0)
 	PlayerRef.PlayIdle(CleanedIdle)
+EndFunction
+
+Function CleanYourself()
+	CleanTriggered()
 	CleanSpell.Cast(PlayerRef, PlayerRef)
 	ClearTempEffects()
-
-	If GetFormFromFile(0x05113425, "Keep It Clean.esp")
-		Message CleanedMsgKIC = GetFormFromFile(0x05113425, "Keep It Clean.esp") as Message
-		CleanedMsgKIC.Show()
-	EndIf
-
-	CleanedMessage.Show()
-
-	EquipHelmetBackOn()
-
-	If GetFormFromFile(0x051BB908, "Keep It Clean.esp")
-		CleanYourselfKeepItClean()
-	EndIf
-
-	If GetFormFromFile(0x01000824, "Dirt and Blood - Dynamic Visuals.esp")
-		CleanYourselfDirtAndBlood()
-	EndIf
 EndFunction
 
 Function CleanYourselfDirtAndBlood()
 	PlayerRef.DispelSpell(CleanSpell)
+	CleanTriggered()
 
 	Spell Dirty_Spell_Dirt1 = GetFormFromFile(0x01000806, "Dirt and Blood - Dynamic Visuals.esp") as Spell
 	Spell Dirty_Spell_Dirt2 = GetFormFromFile(0x01000807, "Dirt and Blood - Dynamic Visuals.esp") as Spell
@@ -115,25 +125,17 @@ Function CleanYourselfDirtAndBlood()
 	Spell Dirty_Spell_Blood3 = GetFormFromFile(0x0100080B, "Dirt and Blood - Dynamic Visuals.esp") as Spell
 	Spell Dirty_Spell_Blood4 = GetFormFromFile(0x01000839, "Dirt and Blood - Dynamic Visuals.esp") as Spell
 
-	If PlayerRef.HasSpell(Dirty_Spell_Dirt4)
-		PlayerRef.RemoveSpell(Dirty_Spell_Dirt4)
-		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
-	ElseIf PlayerRef.HasSpell(Dirty_Spell_Dirt3)
-		PlayerRef.RemoveSpell(Dirty_Spell_Dirt3)
-		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
-	ElseIf PlayerRef.HasSpell(Dirty_Spell_Dirt2)
-		PlayerRef.RemoveSpell(Dirty_Spell_Dirt2)
-		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
-	ElseIf PlayerRef.HasSpell(Dirty_Spell_Blood4)
-		PlayerRef.RemoveSpell(Dirty_Spell_Blood4)
-		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
-	ElseIf PlayerRef.HasSpell(Dirty_Spell_Blood3)
-		PlayerRef.RemoveSpell(Dirty_Spell_Blood3)
-		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
-	ElseIf PlayerRef.HasSpell(Dirty_Spell_Blood2)
-		PlayerRef.RemoveSpell(Dirty_Spell_Blood2)
-		PlayerRef.AddSpell(Dirty_Spell_Dirt1, False)
-	EndIf
+	; Just remove any spell possible
+	PlayerRef.RemoveSpell(Dirty_Spell_Dirt2)
+	PlayerRef.RemoveSpell(Dirty_Spell_Dirt3)
+	PlayerRef.RemoveSpell(Dirty_Spell_Dirt4)
+	PlayerRef.RemoveSpell(Dirty_Spell_Blood1)
+	PlayerRef.RemoveSpell(Dirty_Spell_Blood2)
+	PlayerRef.RemoveSpell(Dirty_Spell_Blood3)
+	PlayerRef.RemoveSpell(Dirty_Spell_Blood4)
+
+	; Add the "Slightly Dirty" effect to the player
+	PlayerRef.AddSpell(Dirty_Spell_Dirt1)
 EndFunction
 
 Function CleanYourselfKeepItClean()
